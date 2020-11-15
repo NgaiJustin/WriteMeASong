@@ -20,7 +20,7 @@ def clean(lyricsString):
     return lyricsString
 
 # Subtract one for ds.store
-songNum = len([print(name) for name in os.listdir('sampleSongs')]) - 1
+songNum = len([name for name in os.listdir('sampleSongs')]) - 1
 lyricsList = []
 # Process all songs
 for i in range(songNum):
