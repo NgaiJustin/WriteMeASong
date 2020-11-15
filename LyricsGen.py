@@ -28,5 +28,5 @@ for i in range(songNum):
         lyricsList.append(clean(f.read()))
 
 g = Graph(lyricsList)
-print(g.generateLyrics())
+print(g.generateLyrics(50))
 # pp.pprint(g.nextWordProbDict)
