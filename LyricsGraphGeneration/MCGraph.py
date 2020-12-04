@@ -11,7 +11,7 @@ class Graph:
         # Maybe use the full stop to indicate newline: prettyPrint
         tempDefaultDict = dd(list)
         for lyricsString in lstOfLyricsStrings:
-            lyricsString.lower()
+            lyricsString = lyricsString.lower()
             words = lyricsString.split(' ')
             for currWord, nextWord in zip(words[0:-1], words[1:]):
                 tempDefaultDict[currWord].append(nextWord)
@@ -32,6 +32,14 @@ class Graph:
         probDict = self.nextWordProbDict
         return random.choice(probDict[currWord])
 
+    def clean(self, lyricsString):
+        """
+        Remove extra space from newLine and newParagraph seperators
+        """
+        lyricsString = lyricsString.replace(' \n ', '\n')
+        lyricsString = lyricsString.replace(' \n\n ', '\n\n')
+        return lyricsString
+
     def generateLyrics(self, count=100):
         probDict = self.nextWordProbDict
         currWord = random.choice(list(probDict.keys()))
@@ -40,7 +48,7 @@ class Graph:
             self.lyrics += currWord
             self.lyrics += " "
             currWord = self.nextWord(currWord)
-        return self.lyrics
+        return self.clean(self.lyrics)
 
             
 
