@@ -1,4 +1,6 @@
 from MCGraph import Graph
+from lyricsgenius import Genius # https://github.com/johnwmillr/LyricsGenius
+from decouple import config
 import re
 import string
 import os
@@ -6,24 +8,29 @@ import os
 import pprint                           # for debugging
 pp = pprint.PrettyPrinter(indent=4)     # for debugging
 
-# deal with Genius API here
-# For now I'll just work with the copy and pasted lyrics from Genius
+# Setup genius API
+token = config('GENIUS_ACCESS_TOKEN')
+genius = Genius(token)
+genius.remove_section_headers = True
 
 def clean(lyricsString):
     """
     Format lyrics and remove unnecessary annotations
     """
-    # Remove punctuations except '
-    lyricsString = lyricsString.translate(str.maketrans('', '', string.punctuation.replace('\'', ''))) 
+    # Remove the [xxx] annotations
+    lyricsString = re.sub(r'\[(.+)\]', ' ', lyricsString) 
+
+    # Remove punctuations except ', ? and ! 
+    toRemove = string.punctuation.replace('\'', '')
+    toRemove = toRemove.replace('!', '')
+    toRemove = toRemove.replace('?', '')
+    lyricsString = lyricsString.translate(str.maketrans('', '', toRemove)) 
 
     # Format newLine and newParagraph seperators
     lyricsString = lyricsString.lower()
     lyricsString = lyricsString.replace('\n\n', 'NP')
     lyricsString = lyricsString.replace('\n', ' \n ')
     lyricsString = lyricsString.replace('NP', ' \n\n ')
-
-    # Remove the [xxx] annotations
-    lyricsString = re.sub(r'\[(.+)\]', ' ', lyricsString) 
 
     return lyricsString
 
@@ -41,7 +48,7 @@ g = Graph(lyricsList)
 
 
 """ Generate Markov Chaining Lyrics """
-print(g.generateLyrics(50))
+# print(g.generateLyrics(100))
 
 """ Generate LSTM Lyrics """
 # Not yet implemented
@@ -54,3 +61,7 @@ print(g.generateLyrics(50))
 """ Test Clean Method """
 # with open('sampleSongs/2.txt') as f:
 #     print(clean(f.read()))
+
+""" Test API Works """
+# artist = genius.search_artist("Andy Shauf", max_songs=3, sort="title")
+# print(artist.songs)

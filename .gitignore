@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# graph API and caches -- useless
+*.pyc
+.env
+
 # dependencies
 /node_modules
 /.pnp
@@ -12,7 +16,6 @@
 /build
 
 # misc
-**/__pycache__
 .DS_Store
 .env.local
 .env.development.local

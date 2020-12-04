@@ -7,8 +7,6 @@ class Graph:
     lyrics = ""
 
     def __init__(self, lstOfLyricsStrings):
-        # lyricsString.translate(None, string.punctuation)
-        # Maybe use the full stop to indicate newline: prettyPrint
         tempDefaultDict = dd(list)
         for lyricsString in lstOfLyricsStrings:
             lyricsString = lyricsString.lower()
@@ -43,11 +41,13 @@ class Graph:
     def generateLyrics(self, count=100):
         probDict = self.nextWordProbDict
         currWord = random.choice(list(probDict.keys()))
-        currWord.capitalize()
-        for __ in range(count):
+        while count:
+            if '\n' in currWord:
+                count += 1
             self.lyrics += currWord
             self.lyrics += " "
             currWord = self.nextWord(currWord)
+            count -= 1
         return self.clean(self.lyrics)
 
             
