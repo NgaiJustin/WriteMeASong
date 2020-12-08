@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Header, Dropdown, Modal } from 'semantic-ui-react'
 import InitialModal from './InitialModal';
+import firebase from 'firebase';
+import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
 
 const Landing = () => {
     const [genre, setGenre] = React.useState('');
@@ -17,6 +19,8 @@ const Landing = () => {
         Genre is {genre==='' ? 'not selected yet' : genre}
         <br></br>
         Length is {length===0 ? 'not selected yet' : length}
+        <br></br>
+        <button onClick={()=>firebase.auth().signOut()}>Sign Out</button>
             <InitialModal setGenre={handleGenreChange} setLength={handleLengthChange}/>
         </div>
     )
