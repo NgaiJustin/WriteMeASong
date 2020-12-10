@@ -8,10 +8,18 @@ import os
 import pprint                           # for debugging
 pp = pprint.PrettyPrinter(indent=4)     # for debugging
 
-# Setup genius API
+# Setup genius API -- ensure you set the corresponding env variable to generated token
 token = config('GENIUS_ACCESS_TOKEN')
 genius = Genius(token)
 genius.remove_section_headers = True
+
+# Find way to get a list of song names for top songs of a particular genre
+#   Option 1: Spotify:
+#       - python api --> Spotify
+#       - Use "get a category" endpoint to get list of songs
+#           - https://developer.spotify.com/documentation/web-api/reference-beta/#endpoint-get-a-category
+#       - May need some work
+#   Option 2: Itunes?
 
 def clean(lyricsString):
     """
