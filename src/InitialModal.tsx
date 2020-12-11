@@ -10,12 +10,24 @@ const InitialModal = (props: props) => {
     const [open, setOpen] = React.useState(true);
     const genreOptions = [
         {
-            text: 'Pop music',
-            value: 'Pop music',
+            text: 'Pop',
+            value: 'Pop',
         },
         {
             text: 'Rock',
             value: 'Rock'
+        },
+        {
+            text: 'Rap',
+            value: 'Rap'
+        },
+        {
+            text: 'Country',
+            value: 'Country'
+        },
+        {
+            text: 'Xmas',
+            value: 'Xmas'
         }
     ]
 
