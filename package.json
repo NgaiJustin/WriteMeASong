@@ -44,5 +44,6 @@
       "last 1 safari version"
     ]
   },
-  "jsx": "react"
+  "jsx": "react",
+  "proxy": "http://127.0.0.1:8000/"
 }

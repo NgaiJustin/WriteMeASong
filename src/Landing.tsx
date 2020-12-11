@@ -6,21 +6,37 @@ import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
 
 const Landing = () => {
     const [genre, setGenre] = React.useState('');
-    const [length, setLength] = React.useState(0);
+    const [length, setLength] = React.useState('');
     const [lyrics, setLyrics] = React.useState('');
     const handleGenreChange = (newValue: string) => {
         setGenre(newValue);
     }
-    const handleLengthChange = (newValue: number) => {
+    const handleLengthChange = (newValue: string) => {
         setLength(newValue);
     }
     const generateLyrics = async () => {
         try {
+        let count = 0;
+        switch(length) {
+            case 'Less than 100 words': 
+            count = Math.floor(Math.random()*101);
+            break;
+            case '100 - 200 words':
+            count = Math.floor(Math.random()*101) + 100;
+            break;
+            case '200 - 300 words':
+            count = Math.floor(Math.random()*101) + 200;
+            break;
+            case '300 - 400 words':
+            count = Math.floor(Math.random()*101) + 300;
+            break;
+        }
+        console.log('called');
         const body = {
             "genre": genre,
-            "lyrics": length
+            "length": count
         }
-        const response = await fetch('/gen-song', {
+        const response = await fetch('http://127.0.0.1:8000/gen-song', {
             method: 'POST',
             body: JSON.stringify(body)
         });
@@ -36,7 +52,7 @@ const Landing = () => {
         <div>
         Genre is {genre==='' ? 'not selected yet' : genre}
         <br></br>
-        Length is {length===0 ? 'not selected yet' : length}
+        Length is {length==='' ? 'not selected yet' : length}
         <br></br>
         <Button onClick={()=>generateLyrics()}>Generate Lyrics</Button>
         <br></br>
