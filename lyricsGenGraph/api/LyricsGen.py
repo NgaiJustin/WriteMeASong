@@ -1,6 +1,6 @@
 from pathlib import Path
-from Genre import Genre
-from MCGraph import Graph
+from .Genre import Genre
+from .MCGraph import Graph
 import re
 import string
 import os
@@ -32,8 +32,8 @@ def makeGraph(genre):
     """
     if not isinstance(genre, Genre):
         return None
-    songSource = Path("songSource")
-    genreFolder = songSource / genre.name
+    songSource = Path('songSource')
+    genreFolder = songSource / genre.value
     songNum = len([name for name in os.listdir(genreFolder)])
     lyricsList = []
 

@@ -1,6 +1,6 @@
 from django.db import models
-from Genre import Genre
-import LyricsGen
+from .Genre import Genre
+from . import LyricsGen
 
 popGraph = LyricsGen.makeGraph(Genre.POP)
 countryGraph = LyricsGen.makeGraph(Genre.COUNTRY)
