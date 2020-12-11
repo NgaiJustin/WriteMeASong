@@ -1,7 +1,12 @@
 from rest_framework import serializers
-from .models import popGraph
+from .models import Song
 
-class PopSerializer(serializers.ModelSerializer):
+class SongSerializer(serializers.ModelSerializer):
     class Meta:
-        model = popGraph
-        fields = ('id', 'lyrics')
+        model = Song
+        fields = ('id', 'genre', 'length', 'lyrics')
+
+class CreateSongSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Song
+        fields = ('genre', 'length')

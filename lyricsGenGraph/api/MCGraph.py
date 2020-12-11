@@ -39,6 +39,7 @@ class Graph:
         return lyricsString
 
     def generateLyrics(self, count=100):
+        self.lyrics = ""
         probDict = self.nextWordProbDict
         currWord = random.choice(list(probDict.keys()))
         while count:

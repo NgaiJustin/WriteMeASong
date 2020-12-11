@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import main
+from .views import SongView, CreateSongView
 
 urlpatterns = [
-    path('', main),
+    path('song', SongView.as_view()),
+    path('gen-song', CreateSongView.as_view()),
 ]
