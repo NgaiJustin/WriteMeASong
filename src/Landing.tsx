@@ -3,16 +3,21 @@ import { Button, Header, Dropdown, Modal } from 'semantic-ui-react'
 import InitialModal from './InitialModal';
 import firebase from 'firebase';
 import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
+import background from './images/background.png';
 
 const Landing = () => {
     const [genre, setGenre] = React.useState('');
     const [length, setLength] = React.useState('');
     const [lyrics, setLyrics] = React.useState('');
+    const [open, setOpen] = React.useState(true);
     const handleGenreChange = (newValue: string) => {
         setGenre(newValue);
     }
     const handleLengthChange = (newValue: string) => {
         setLength(newValue);
+    }
+    const handleOpen = (newValue: boolean) => {
+        setOpen(newValue);
     }
     const generateLyrics = async () => {
         try {
@@ -31,35 +36,37 @@ const Landing = () => {
             count = Math.floor(Math.random()*101) + 300;
             break;
         }
-        console.log('called');
         const body = {
             "genre": genre,
             "length": count
         }
-        const response = await fetch('https://cors-anywhere.herokuapp.com/'+'http://127.0.0.1:8000/gen-song', {
+        const response = await fetch('/gen-song', {
             method: 'POST',
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body)
         });
         const responseJson = await response.json()
         setLyrics(responseJson.lyrics)
-        return response.json();
+        return responseJson;
         } catch(e) {
             console.log(e);
         }
     }
-    console.log(genre);
     return (
-        <div>
-        Genre is {genre==='' ? 'not selected yet' : genre}
-        <br></br>
+        <div style={{backgroundImage: `url(${background})`, height: '700px', color: 'white'}} className='container'>
+            <InitialModal setGenre={handleGenreChange} setLength={handleLengthChange} generateLyrics={generateLyrics} setOpen={handleOpen} open={open}/>
+        <div style={{fontSize: 'large', padding: '20px'}}>
+        Genre is {genre==='' ? 'not selected yet' : genre} <br></br>
         Length is {length==='' ? 'not selected yet' : length}
-        <br></br>
-        <Button onClick={()=>generateLyrics()}>Generate Lyrics</Button>
-        <br></br>
+        </div>
+        <div style={{fontSize: '17px', textDecoration: 'underline', padding: '10px'}}>
+        Generated Lyrics:
+        </div>
+        <div style={{margin: 'auto', width: '50%'}}>
         {lyrics}
-        <br></br>
-        <Button onClick={()=>firebase.auth().signOut()}>Sign Out</Button>
-            <InitialModal setGenre={handleGenreChange} setLength={handleLengthChange}/>
+        </div>
+        <Button style={{margin:'10px'}} onClick={()=>{handleOpen(true)}}>Run it back</Button>
+        <Button style={{margin:'10px'}} onClick={()=>firebase.auth().signOut()}>Sign Out</Button>
         </div>
     )
 }

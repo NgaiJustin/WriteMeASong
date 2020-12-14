@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'firebase/auth';
 import firebase from 'firebase';
 import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
+import background from './images/loginBackground.png';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBASg3NFLA6No6bmE8Rk5TRUrR_9adia_w",
@@ -13,7 +14,11 @@ const firebaseConfig = {
   measurementId: "G-1R48TXSB2L"
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}else {
+  firebase.app(); // if already initialized, use that one
+}
 
 type Props = {
   readonly children: React.ReactNode;
@@ -36,11 +41,12 @@ const Authenticated = ({ children }: Props) => {
   useEffect(() => onAuthStateChange(), []);
 
   return (
-    <div>
+    <div style={{backgroundImage: `url(${background})`, height: '700px', color: 'white', position: 'relative'}}>
       {user && children}
       {!user && (
-        <div>
-        Welcome to Write Me a Song!
+        <div style={{fontSize: '40px', float: 'left', position: 'absolute', top: '250px', left: '20px'}}>
+        WELCOME TO WRITE ME A SONG
+        <div style={{height: '20px'}}></div>
         <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
         </div>
       )}

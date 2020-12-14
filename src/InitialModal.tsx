@@ -4,30 +4,32 @@ import { Button, Header, Dropdown, Modal } from 'semantic-ui-react'
 type props = {
     setGenre: Function,
     setLength: Function,
+    generateLyrics: Function,
+    setOpen: Function,
+    open: boolean
 }
 
 const InitialModal = (props: props) => {
-    const [open, setOpen] = React.useState(true);
     const genreOptions = [
         {
             text: 'Pop',
-            value: 'Pop',
+            value: 'pop',
         },
         {
             text: 'Rock',
-            value: 'Rock'
+            value: 'rock'
         },
         {
             text: 'Rap',
-            value: 'Rap'
+            value: 'rap'
         },
         {
             text: 'Country',
-            value: 'Country'
+            value: 'country'
         },
         {
             text: 'Xmas',
-            value: 'Xmas'
+            value: 'xmas'
         }
     ]
 
@@ -49,14 +51,20 @@ const InitialModal = (props: props) => {
             value: '300 - 400 words'
         }   
     ]
+
+    const handleGenerateLyrics = () => {
+        props.generateLyrics();
+        props.setOpen(false);
+    }
     
     return (
         <div>
             <Modal 
                 closeIcon
-                open={open}
-                onClose={() => setOpen(false)}
-                onOpen={() => setOpen(true)}
+                open={props.open}
+                onClose={() => props.setOpen(false)}
+                onOpen={() => props.setOpen(true)}
+                closeOnDimmerClick={false}
             >
             <Header icon='music' content='Choose your preferences!' />
                 <Modal.Content>
@@ -75,7 +83,9 @@ const InitialModal = (props: props) => {
                         selection
                         options = {lengthOptions}
                         onChange = {(e, {value})=>{props.setLength(value)}}
+                        style = {{marginBottom: '10px'}}
                     />
+                    <Button style={{margin: 'auto', display:'block'}} onClick={()=>handleGenerateLyrics()}>Generate Lyrics</Button>
                 </Modal.Content>
             </Modal>
         </div>
