@@ -36,7 +36,7 @@ const Landing = () => {
             "genre": genre,
             "length": count
         }
-        const response = await fetch('http://127.0.0.1:8000/gen-song', {
+        const response = await fetch('https://cors-anywhere.herokuapp.com/'+'http://127.0.0.1:8000/gen-song', {
             method: 'POST',
             body: JSON.stringify(body)
         });
