@@ -39,14 +39,17 @@ const Landing = () => {
                 genre: genre,
                 length: count,
             };
-            const response = await fetch("/gen-song", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body),
-            });
-            const responseJson = await response.json();
-            setLyrics(responseJson.lyrics);
-            return responseJson;
+            const response = await fetch(
+                "https://lyrics-generation.herokuapp.com/gen-song",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body),
+                }
+            )
+                .then((res) => res.json())
+                .then((response) => setLyrics(response.lyrics));
+            // const responseJson = await response.json();
         } catch (e) {
             console.log(e);
         }
