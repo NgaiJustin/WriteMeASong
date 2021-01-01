@@ -3,6 +3,7 @@
 # graph API token and caches -- useless
 *.pyc
 .env
+.vscode/
 
 # dependencies
 /node_modules

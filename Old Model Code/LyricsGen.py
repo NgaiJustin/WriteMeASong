@@ -1,13 +1,13 @@
-from MCGraph import Graph
-# from lyricsgenius import Genius # https://github.com/johnwmillr/LyricsGenius
-# from decouple import config
 from enum import Enum
 from pathlib import Path
 import re
 import string
 import os
-
 import pprint                           # for debugging
+
+from MCGraph import Graph
+# from lyricsgenius import Genius # https://github.com/johnwmillr/LyricsGenius
+# from decouple import config
 pp = pprint.PrettyPrinter(indent=4)     # for debugging
 
 # Setup genius API -- ensure you set the corresponding env variable to generated token
@@ -15,26 +15,26 @@ pp = pprint.PrettyPrinter(indent=4)     # for debugging
 # genius = Genius(token)
 # genius.remove_section_headers = True
 
-def clean(lyricsString):
+def clean(lyrics_string):
     """
     Format lyrics and remove unnecessary annotations
     """
     # Remove the [xxx] annotations
-    lyricsString = re.sub(r'\[(.+)\]', ' ', lyricsString) 
+    lyrics_string = re.sub(r'\[(.+)\]', ' ', lyrics_string) 
 
     # Remove punctuations except ', ? and ! 
     toRemove = string.punctuation.replace('\'', '')
     toRemove = toRemove.replace('!', '')
     toRemove = toRemove.replace('?', '')
-    lyricsString = lyricsString.translate(str.maketrans('', '', toRemove)) 
+    lyrics_string = lyrics_string.translate(str.maketrans('', '', toRemove)) 
 
     # Format newLine and newParagraph seperators
-    lyricsString = lyricsString.lower()
-    lyricsString = lyricsString.replace('\n\n', 'NP')
-    lyricsString = lyricsString.replace('\n', ' \n ')
-    lyricsString = lyricsString.replace('NP', ' \n\n ')
+    lyrics_string = lyrics_string.lower()
+    lyrics_string = lyrics_string.replace('\n\n', 'NP')
+    lyrics_string = lyrics_string.replace('\n', ' \n ')
+    lyrics_string = lyrics_string.replace('NP', ' \n\n ')
 
-    return lyricsString
+    return lyrics_string
 
 class Genre(Enum):
     COUNTRY = "country"
