@@ -46,5 +46,5 @@
         ]
     },
     "jsx": "react",
-    "proxy": "https://lyrics-generation.herokuapp.com/"
+    "proxy": "https://lyrics-generation.herokuapp.com"
 }
