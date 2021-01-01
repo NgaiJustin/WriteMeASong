@@ -1,6 +1,12 @@
 .Lyrics {
+    overflow: scroll;
     text-align: center;
     margin: auto;
+    max-height: 50vh;
     max-width: 50%;
     white-space: pre-wrap;
+}
+
+.container {
+    color: white;
 }

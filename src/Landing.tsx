@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Button, Header, Dropdown, Modal } from "semantic-ui-react";
 import InitialModal from "./InitialModal";
 import firebase from "firebase";
-import FirebaseAuth from "react-firebaseui/FirebaseAuth";
-import background from "./images/background.png";
 import "./Landing.css";
 
 const Landing = () => {
@@ -54,14 +52,7 @@ const Landing = () => {
         }
     };
     return (
-        <div
-            style={{
-                backgroundImage: `url(${background})`,
-                height: "700px",
-                color: "white",
-            }}
-            className="container"
-        >
+        <div className="container">
             <InitialModal
                 setGenre={handleGenreChange}
                 setLength={handleLengthChange}
@@ -82,7 +73,6 @@ const Landing = () => {
             >
                 Generated Lyrics:
             </div>
-            {/* <div style={{ margin: "auto", width: "50%" }}>{lyrics}</div> */}
             <div className="Lyrics">{lyrics}</div>
             <Button
                 style={{ margin: "10px" }}
