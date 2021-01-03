@@ -2,6 +2,8 @@
 
 This is a web app that generates lyrics based on a selected genre and length. This project is still under development, let me know if you have any suggestions! You can view the latest iteration [here](https://write-me-a-song.herokuapp.com/)
 
+## Preview
+
 ## Changelog
 ### v1.0.1 - 3/1/21
 - Revamp UI
