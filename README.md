@@ -29,3 +29,6 @@ This is a web app that generates lyrics based on a selected genre and length. Th
 - Deployed to heroku
 ### v0.1.0 - 12/15/20
 - First release
+
+## Credits
+- [tsParticles](https://github.com/matteobruni/tsparticles)
