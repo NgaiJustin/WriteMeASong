@@ -3,6 +3,7 @@ import "firebase/auth";
 import firebase from "firebase";
 import FirebaseAuth from "react-firebaseui/FirebaseAuth";
 import "./Authenticated.css";
+import ParticleBG from "./Particles";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBASg3NFLA6No6bmE8Rk5TRUrR_9adia_w",
@@ -41,30 +42,33 @@ const Authenticated = ({ children }: Props) => {
     useEffect(() => onAuthStateChange(), []);
 
     return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100vh",
-            }}
-        >
-            {user && children}
-            {!user && (
-                <div
-                    style={{
-                        color: "white",
-                        fontSize: "40px",
-                    }}
-                >
-                    WELCOME TO WRITE ME A SONG
-                    <div style={{ height: "20px" }}></div>
-                    <FirebaseAuth
-                        uiConfig={uiConfig}
-                        firebaseAuth={firebase.auth()}
-                    />
-                </div>
-            )}
+        <div>
+            <ParticleBG genre="" />
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                }}
+            >
+                {user && children}
+                {!user && (
+                    <div
+                        style={{
+                            color: "white",
+                            fontSize: "40px",
+                        }}
+                    >
+                        WELCOME TO WRITE ME A SONG
+                        <div style={{ height: "20px" }}></div>
+                        <FirebaseAuth
+                            uiConfig={uiConfig}
+                            firebaseAuth={firebase.auth()}
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

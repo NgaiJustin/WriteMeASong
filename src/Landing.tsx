@@ -3,6 +3,7 @@ import { Button } from "semantic-ui-react";
 import InitialModal from "./InitialModal";
 import firebase from "firebase";
 import "./Landing.css";
+import ParticleBG from "./Particles";
 
 const Landing = () => {
     const [genre, setGenre] = React.useState("");
@@ -64,42 +65,46 @@ const Landing = () => {
         }
     };
     return (
-        <div className="container">
-            <InitialModal
-                setGenre={handleGenreChange}
-                setLength={handleLengthChange}
-                generateLyrics={generateLyrics}
-                setOpen={handleOpen}
-                open={open}
-            />
-            <div style={{ fontSize: "large", padding: "20px" }}>
-                Genre is {genre === "" ? "not selected yet" : genre} <br></br>
-                Length is {length === "" ? "not selected yet" : length}
+        <div>
+            <ParticleBG genre={genre} />
+            <div className="container">
+                <InitialModal
+                    setGenre={handleGenreChange}
+                    setLength={handleLengthChange}
+                    generateLyrics={generateLyrics}
+                    setOpen={handleOpen}
+                    open={open}
+                />
+                <div style={{ fontSize: "large", padding: "20px" }}>
+                    Genre is {genre === "" ? "not selected yet" : genre}{" "}
+                    <br></br>
+                    Length is {length === "" ? "not selected yet" : length}
+                </div>
+                <div
+                    style={{
+                        fontSize: "17px",
+                        textDecoration: "underline",
+                        padding: "10px",
+                    }}
+                >
+                    Generated Lyrics:
+                </div>
+                <div className="Lyrics">{lyrics}</div>
+                <Button
+                    style={{ margin: "10px" }}
+                    onClick={() => {
+                        handleOpen(true);
+                    }}
+                >
+                    Run it back
+                </Button>
+                <Button
+                    style={{ margin: "10px" }}
+                    onClick={() => firebase.auth().signOut()}
+                >
+                    Sign Out
+                </Button>
             </div>
-            <div
-                style={{
-                    fontSize: "17px",
-                    textDecoration: "underline",
-                    padding: "10px",
-                }}
-            >
-                Generated Lyrics:
-            </div>
-            <div className="Lyrics">{lyrics}</div>
-            <Button
-                style={{ margin: "10px" }}
-                onClick={() => {
-                    handleOpen(true);
-                }}
-            >
-                Run it back
-            </Button>
-            <Button
-                style={{ margin: "10px" }}
-                onClick={() => firebase.auth().signOut()}
-            >
-                Sign Out
-            </Button>
         </div>
     );
 };

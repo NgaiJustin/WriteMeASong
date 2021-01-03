@@ -10,16 +10,6 @@
         "size": "",
         "opacity": 1
     },
-    "backgroundMask": {
-        "composite": "destination-out",
-        "cover": {
-            "color": {
-                "value": "#fff"
-            },
-            "opacity": 1
-        },
-        "enable": false
-    },
     "backgroundMode": {
         "enable": true,
         "zIndex": -1
@@ -111,9 +101,9 @@
                 "quantity": 2
             },
             "repulse": {
-                "distance": 200,
+                "distance": 100,
                 "duration": 0.4,
-                "speed": 1
+                "speed": 0.5
             },
             "slow": {
                 "factor": 3,

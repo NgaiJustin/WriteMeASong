@@ -1,0 +1,116 @@
+{
+    "background": {
+        "color": {
+            "value": "#000"
+        },
+        "opacity": 1
+    },
+    "backgroundMode": {
+        "enable": true,
+        "zIndex": -1
+    },
+    "fpsLimit": 60,
+    "interactivity": {
+        "detect_on": "window",
+        "events": {
+            "onClick": {
+                "enable": true,
+                "mode": "push"
+            },
+            "onHover": {
+                "enable": true,
+                "mode": "repulse"
+            },
+            "resize": true
+        },
+        "modes": {
+            "push": {
+                "quantity": 4
+            },
+            "repulse": {
+                "distance": 200,
+                "duration": 0.4
+            }
+        }
+    },
+    "particles": {
+        "color": { "value": "random" },
+        "links": {
+            "color": "random",
+            "distance": 150,
+            "enable": false,
+            "opacity": 0.4,
+            "width": 1
+        },
+        "move": {
+            "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 },
+            "bounce": false,
+            "direction": "none",
+            "enable": true,
+            "out_mode": "out",
+            "random": false,
+            "speed": 3,
+            "straight": false
+        },
+        "rotate": {
+            "animation": {
+                "enable": true,
+                "speed": 10,
+                "sync": false
+            }
+        },
+        "number": {
+            "density": {
+                "enable": true,
+                "area": 800
+            },
+            "value": 100,
+            "limit": 200
+        },
+        "opacity": {
+            "animation": {
+                "enable": true,
+                "minimumValue": 0.5,
+                "speed": 1,
+                "sync": false
+            },
+            "random": false,
+            "value": 1
+        },
+        "shape": {
+            "character": [
+                {
+                    "fill": true,
+                    "font": "Verdana",
+                    "style": "",
+                    "value": ["w", "r", "i", "t", "e"],
+                    "weight": "400"
+                },
+                {
+                    "fill": false,
+                    "font": "Verdana",
+                    "style": "",
+                    "value": ["s", "o", "n", "g"],
+                    "weight": "400"
+                }
+            ],
+            "polygon": { "nb_sides": 5 },
+            "stroke": { "color": "random", "width": 1 },
+            "type": "char"
+        },
+        "size": {
+            "anim": {
+                "enable": true,
+                "minimumValue": 8,
+                "speed": 2,
+                "sync": false
+            },
+            "random": {
+                "minimumValue": 8,
+                "enable": true
+            },
+            "value": 32
+        }
+    },
+    "detectRetina": true
+}
