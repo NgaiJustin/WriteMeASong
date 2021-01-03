@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "firebase/auth";
 import firebase from "firebase";
 import FirebaseAuth from "react-firebaseui/FirebaseAuth";
-import background from "./images/loginBackground.png";
+import "./Authenticated.css";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBASg3NFLA6No6bmE8Rk5TRUrR_9adia_w",

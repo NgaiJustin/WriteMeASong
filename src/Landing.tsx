@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Header, Dropdown, Modal } from "semantic-ui-react";
+import React from "react";
+import { Button } from "semantic-ui-react";
 import InitialModal from "./InitialModal";
 import firebase from "firebase";
 import "./Landing.css";
@@ -39,17 +39,26 @@ const Landing = () => {
                 genre: genre,
                 length: count,
             };
-            const response = await fetch(
-                "https://lyrics-generation.herokuapp.com/gen-song",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(body),
-                }
-            )
-                .then((res) => res.json())
-                .then((response) => setLyrics(response.lyrics));
-            // const responseJson = await response.json();
+            try {
+                setLyrics(
+                    `Fetching...\n\n Genre: ${genre.toUpperCase()}\n Length: ${count}`
+                );
+                await fetch(
+                    "https://lyrics-generation.herokuapp.com/gen-song",
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(body),
+                    }
+                )
+                    .then((res) => res.json())
+                    .then((response) => setLyrics(response.lyrics));
+            } catch (e) {
+                setLyrics(
+                    "Oops... something went wrong trying to fetch your lyrics.\n\nTry again later!"
+                );
+                console.log(e);
+            }
         } catch (e) {
             console.log(e);
         }
